@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion, useScroll, useSpring } from 'framer-motion';
+import { Analytics } from '@vercel/analytics/react';
 import CustomCursor from './components/CustomCursor';
 import Hero from './components/Hero';
 import Bio from './components/Bio';
@@ -38,6 +39,7 @@ const App: React.FC = () => {
       <footer className="py-12 px-6 border-t border-white/10 text-center text-sm text-white/40">
         <p>© {new Date().getFullYear()} LUCID ASH. ALL RIGHTS RESERVED.</p>
       </footer>
+      <Analytics />
     </div>
   );
 };
