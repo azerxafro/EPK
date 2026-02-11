@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
+import { Play, ExternalLink } from 'lucide-react';
 import { useArtist } from '../context/ArtistContext';
 
 const Hero: React.FC = () => {
@@ -72,9 +73,62 @@ const Hero: React.FC = () => {
             <span className="text-outline text-transparent" style={{ WebkitTextStroke: '1px white' }}>{lastName}</span>
           </h1>
           <p 
-            className="text-xl md:text-2xl font-light tracking-tight max-w-2xl mx-auto text-white/60"
+            className="text-xl md:text-2xl font-light tracking-tight max-w-2xl mx-auto text-white/60 mb-10"
             dangerouslySetInnerHTML={{ __html: hero.description }} 
           />
+
+          {/* CTA Buttons - Like Travis Scott / Drake */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            {hero.ctaLink && (
+              <motion.a
+                href={hero.ctaLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="group flex items-center gap-3 px-8 py-4 rounded-full font-black tracking-widest text-sm text-black"
+                style={{ background: `linear-gradient(135deg, ${artist.theme.primaryColor}, ${artist.theme.gradientTo || artist.theme.primaryColor})` }}
+              >
+                <Play size={18} fill="#000" />
+                {hero.ctaText || 'LISTEN NOW'}
+              </motion.a>
+            )}
+            
+            {hero.tagline && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.5 }}
+                className="px-6 py-3 rounded-full border border-white/20 font-bold tracking-widest text-xs flex items-center gap-2"
+              >
+                <span 
+                  className="w-2 h-2 rounded-full animate-pulse"
+                  style={{ backgroundColor: artist.theme.primaryColor }}
+                />
+                {hero.tagline}
+              </motion.div>
+            )}
+          </div>
+
+          {/* Streaming Platforms Row */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.8 }}
+            className="flex flex-wrap items-center justify-center gap-6 mt-10"
+          >
+            {artist.content.music.platforms.slice(0, 4).map((p) => (
+              <a
+                key={p.name}
+                href={p.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white/40 hover:text-white transition-colors text-[10px] font-bold tracking-[0.3em] flex items-center gap-1"
+              >
+                {p.name} <ExternalLink size={10} />
+              </a>
+            ))}
+          </motion.div>
         </motion.div>
       </div>
 

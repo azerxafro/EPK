@@ -1,44 +1,162 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import { useState, useEffect } from 'react';
+import { Menu, X } from 'lucide-react';
 import { useArtist } from '../context/ArtistContext';
 
-const Navigation: React.FC = () => {
+/**
+ * Navigation - Premium floating nav with scroll effects
+ * Performance-optimized: Pure CSS, no Framer Motion on initial load
+ */
+const Navigation = () => {
   const { artist } = useArtist();
   const { theme } = artist;
+  const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
   
   const navItems = [
-    { name: 'STORY', href: '#story' },
-    { name: 'SOUND', href: '#sound' },
-    { name: 'LOOK', href: '#look' },
-    { name: 'BOOK', href: '#book' },
+    { name: 'MUSIC', href: '#music' },
+    { name: 'VIDEOS', href: '#videos' },
+    { name: 'GALLERY', href: '#gallery' },
+    { name: 'CONTACT', href: '#contact' },
   ];
 
-  return (
-    <nav className="fixed top-0 left-0 w-full p-6 flex justify-between items-center z-40 mix-blend-difference">
-      <motion.div
-        initial={{ opacity: 0, x: -20 }}
-        animate={{ opacity: 1, x: 0 }}
-        className="text-xl font-black tracking-tighter font-syne"
-      >
-        {artist.name.toUpperCase()}
-      </motion.div>
+  const handleNavClick = () => {
+    setIsOpen(false);
+  };
 
-      <div className="flex gap-8">
-        {navItems.map((item, i) => (
-          <motion.a
-            key={item.name}
-            href={item.href}
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: i * 0.1 }}
-            className="text-xs font-bold tracking-widest hover:text-[var(--color)] transition-colors"
-            style={{ '--color': theme.primaryColor } as React.CSSProperties}
+  return (
+    <>
+      {/* Desktop Navigation */}
+      <nav 
+        className={`fixed top-0 left-0 w-full z-40 transition-all duration-300 animate-[fadeSlideUp_0.5s_ease-out_both] ${
+          scrolled ? 'py-4 bg-black/80 backdrop-blur-lg border-b border-white/5' : 'py-6'
+        }`}
+      >
+        <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
+          {/* Logo */}
+          <a 
+            href="#home"
+            className="text-xl font-black tracking-tighter font-syne hover:opacity-80 transition-opacity"
           >
-            {item.name}
-          </motion.a>
-        ))}
+            {artist.content.hero.artistName.split(' ')[0]}
+            <span 
+              className="ml-1"
+              style={{ color: theme.primaryColor }}
+            >.</span>
+          </a>
+
+          {/* Desktop Menu */}
+          <div className="hidden md:flex items-center gap-8">
+            {navItems.map((item) => (
+              <a
+                key={item.name}
+                href={item.href}
+                className="text-xs font-bold tracking-widest text-white/60 hover:text-white transition-colors relative group"
+              >
+                {item.name}
+                <span 
+                  className="absolute -bottom-1 left-0 w-0 h-[1px] group-hover:w-full transition-all duration-300"
+                  style={{ backgroundColor: theme.primaryColor }}
+                />
+              </a>
+            ))}
+            
+            {/* CTA Button */}
+            <a
+              href={artist.content.hero.ctaLink || '#music'}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="ml-4 px-5 py-2 rounded-full text-xs font-bold tracking-widest text-black transition-transform hover:scale-105"
+              style={{ 
+                background: `linear-gradient(135deg, ${theme.primaryColor}, ${theme.gradientTo || theme.primaryColor})` 
+              }}
+            >
+              LISTEN
+            </a>
+          </div>
+
+          {/* Mobile Menu Button */}
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="md:hidden p-2 -mr-2"
+            aria-label="Toggle menu"
+            aria-expanded={isOpen}
+          >
+            {isOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
+      </nav>
+
+      {/* Mobile Menu Overlay - CSS transitions */}
+      <div
+        className={`fixed inset-0 z-30 md:hidden bg-black transition-all duration-300 ${
+          isOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
+        }`}
+      >
+        <div className="flex flex-col items-center justify-center h-full gap-8 px-6">
+          {navItems.map((item, i) => (
+            <a
+              key={item.name}
+              href={item.href}
+              onClick={handleNavClick}
+              className="text-4xl font-black font-syne tracking-tight transition-all duration-300"
+              style={{ 
+                transitionDelay: isOpen ? `${i * 50}ms` : '0ms',
+                transform: isOpen ? 'translateY(0)' : 'translateY(20px)',
+                opacity: isOpen ? 1 : 0
+              }}
+            >
+              {item.name}
+            </a>
+          ))}
+          
+          {/* CTA in Mobile Menu */}
+          <a
+            href={artist.content.hero.ctaLink || '#music'}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-8 px-8 py-4 rounded-full text-sm font-bold tracking-widest text-black transition-all duration-300"
+            style={{ 
+              background: `linear-gradient(135deg, ${theme.primaryColor}, ${theme.gradientTo || theme.primaryColor})`,
+              transitionDelay: isOpen ? '200ms' : '0ms',
+              transform: isOpen ? 'translateY(0)' : 'translateY(20px)',
+              opacity: isOpen ? 1 : 0
+            }}
+          >
+            LISTEN NOW
+          </a>
+
+          {/* Social Links */}
+          <div
+            className="flex items-center gap-6 mt-8 transition-all duration-300"
+            style={{ 
+              transitionDelay: isOpen ? '250ms' : '0ms',
+              opacity: isOpen ? 1 : 0
+            }}
+          >
+            {artist.content.contact.socials.slice(0, 4).map((social) => (
+              <a
+                key={social.name}
+                href={social.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Follow on ${social.name}`}
+                className="text-xs font-bold tracking-widest text-white/60 hover:text-white transition-colors"
+              >
+                {social.name.toUpperCase()}
+              </a>
+            ))}
+          </div>
+        </div>
       </div>
-    </nav>
+    </>
   );
 };
 

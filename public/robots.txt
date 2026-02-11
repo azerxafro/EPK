@@ -1,9 +1,8 @@
- User-agent: *
-ercel
+User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://press.ashwinazer.rocks/sitemap.xml
+Sitemap: https://ashwinazer.rocks/sitemap.xml
 
 # Crawl-delay for polite bots
 Crawl-delay: 1
