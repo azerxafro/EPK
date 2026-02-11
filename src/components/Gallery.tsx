@@ -1,29 +1,11 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useArtist } from '../context/ArtistContext';
 
 const Gallery: React.FC = () => {
-  const images = [
-    {
-      url: "/images/hero-bg.webp",
-      span: "md:col-span-2 md:row-span-2",
-      title: "THE LOOK"
-    },
-    {
-      url: "/images/sonic-frequencies.webp",
-      span: "md:col-span-1 md:row-span-1",
-      title: "SONIC FREQUENCIES"
-    },
-    {
-      url: "/images/visual-narrative.webp",
-      span: "md:col-span-1 md:row-span-1",
-      title: "VISUAL NARRATIVE"
-    },
-    {
-      url: "/images/lucid-moments.webp",
-      span: "md:col-span-2 md:row-span-1",
-      title: "LUCID MOMENTS"
-    }
-  ];
+  const { artist } = useArtist();
+  const { gallery } = artist.content;
+  const { theme } = artist;
 
   return (
     <section id="look" className="py-32 px-6">
@@ -34,12 +16,15 @@ const Gallery: React.FC = () => {
           viewport={{ once: true }}
           className="flex items-baseline gap-4 mb-16"
         >
-          <span className="text-5xl font-black font-syne text-[#00f2ff]">03</span>
-          <h2 className="text-6xl md:text-8xl font-black font-syne tracking-tighter">THE LOOK.</h2>
+          <span 
+            className="text-5xl font-black font-syne"
+            style={{ color: theme.primaryColor }}
+          >03</span>
+          <h2 className="text-6xl md:text-8xl font-black font-syne tracking-tighter">{gallery.title}</h2>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 auto-rows-[300px]">
-          {images.map((img, i) => (
+          {gallery.images.map((img, i) => (
             <motion.div
               key={i}
               initial={{ opacity: 0, scale: 0.95 }}
@@ -55,7 +40,10 @@ const Gallery: React.FC = () => {
                 className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 grayscale group-hover:grayscale-0"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-8">
-                <span className="text-[#00f2ff] text-[10px] font-bold tracking-[0.3em] mb-2">PRESS PHOTO</span>
+                <span 
+                    className="text-[10px] font-bold tracking-[0.3em] mb-2"
+                    style={{ color: theme.primaryColor }}
+                >PRESS PHOTO</span>
                 <h3 className="text-2xl font-black font-syne tracking-tight">{img.title}</h3>
               </div>
             </motion.div>
@@ -66,7 +54,16 @@ const Gallery: React.FC = () => {
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="px-12 py-4 border border-white/20 hover:border-[#00f2ff] hover:text-[#00f2ff] transition-all font-bold tracking-widest text-xs"
+            className="px-12 py-4 border border-white/20 transition-all font-bold tracking-widest text-xs"
+            style={{ borderColor: 'rgba(255,255,255,0.2)' }}
+            onMouseEnter={(e) => {
+                e.currentTarget.style.borderColor = theme.primaryColor;
+                e.currentTarget.style.color = theme.primaryColor;
+            }}
+            onMouseLeave={(e) => {
+                e.currentTarget.style.borderColor = 'rgba(255,255,255,0.2)';
+                e.currentTarget.style.color = 'white';
+            }}
           >
             DOWNLOAD PRESS KIT (ZIP)
           </motion.button>

@@ -1,11 +1,29 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Instagram, Twitter, Youtube, Send } from 'lucide-react';
+import { useArtist } from '../context/ArtistContext';
 
 const Contact: React.FC = () => {
+  const { artist } = useArtist();
+  const { contact } = artist.content;
+  const { theme } = artist;
+
+  const getSocialIcon = (name: string) => {
+    switch (name.toLowerCase()) {
+      case 'instagram': return Instagram;
+      case 'twitter': return Twitter;
+      case 'youtube': return Youtube;
+      case 'mail': return Mail;
+      default: return Send; // Generic icon
+    }
+  };
+
   return (
     <section id="book" className="py-32 px-6 bg-black relative overflow-hidden">
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#00f2ff]/5 rounded-full blur-[120px] pointer-events-none" />
+      <div 
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full blur-[120px] pointer-events-none" 
+        style={{ backgroundColor: `${theme.primaryColor}0d` }} // 5% opacity
+      />
 
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
@@ -17,7 +35,10 @@ const Contact: React.FC = () => {
               viewport={{ once: true }}
               className="flex items-baseline gap-4 mb-8"
             >
-              <span className="text-5xl font-black font-syne text-[#00f2ff]">04</span>
+              <span 
+                className="text-5xl font-black font-syne"
+                style={{ color: theme.primaryColor }}
+              >04</span>
               <h2 className="text-6xl md:text-8xl font-black font-syne tracking-tighter">THE BOOK.</h2>
             </motion.div>
 
@@ -26,15 +47,19 @@ const Contact: React.FC = () => {
             </p>
 
             <div className="space-y-6">
-              <a href="mailto:ashwinazer@monadelta.com" className="flex items-center gap-4 group">
-                <div className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center group-hover:border-[#00f2ff] group-hover:text-[#00f2ff] transition-all">
-                  <Mail size={20} />
+              <a href={`mailto:${contact.email}`} className="flex items-center gap-4 group">
+                <div 
+                    className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center transition-all group-hover:text-current"
+                    style={{ '--hover-color': theme.primaryColor } as React.CSSProperties}
+                >
+                    {/* Using style for hover is tricky with inline, so we use group-hover with classes if possible, or reliable dynamic styles */}
+                   <Mail size={20} className="group-hover:text-[var(--hover-color)]" style={{ color: 'inherit' }} /> 
                 </div>
-                <span className="text-xl font-bold tracking-tight">ashwinazer@monadelta.com</span>
+                <span className="text-xl font-bold tracking-tight">{contact.email}</span>
               </a>
 
-              <a href="https://monadelta.me" target="_blank" className="flex items-center gap-4 group">
-                <div className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center group-hover:border-[#00f2ff] group-hover:text-[#00f2ff] transition-all">
+              <a href="https://monadelta.me" target="_blank" rel="noreferrer" className="flex items-center gap-4 group">
+                <div className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center transition-all">
                   <Send size={20} />
                 </div>
                 <div className="flex flex-col">
@@ -44,16 +69,19 @@ const Contact: React.FC = () => {
               </a>
 
               <div className="flex gap-4 pt-8">
-                {[Instagram, Twitter, Youtube].map((Icon, i) => (
-                  <motion.a
-                    key={i}
-                    href="#"
-                    whileHover={{ y: -5, color: '#00f2ff' }}
-                    className="w-14 h-14 rounded-full border border-white/10 flex items-center justify-center transition-colors"
-                  >
-                    <Icon size={24} />
-                  </motion.a>
-                ))}
+                {contact.socials.map((social, i) => {
+                    const Icon = getSocialIcon(social.name);
+                    return (
+                        <motion.a
+                            key={i}
+                            href={social.href}
+                            whileHover={{ y: -5, color: theme.primaryColor }}
+                            className="w-14 h-14 rounded-full border border-white/10 flex items-center justify-center transition-colors"
+                        >
+                            <Icon size={24} />
+                        </motion.a>
+                    );
+                })}
               </div>
             </div>
           </div>
@@ -68,16 +96,19 @@ const Contact: React.FC = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <label className="text-[10px] font-bold tracking-[0.2em] text-white/40 uppercase">Name</label>
-                  <input type="text" className="w-full bg-white/5 border-b border-white/20 py-3 px-4 focus:outline-none focus:border-[#00f2ff] transition-colors" placeholder="Your Name" />
+                  <input type="text" className="w-full bg-white/5 border-b border-white/20 py-3 px-4 focus:outline-none focus:border-[var(--color)] transition-colors"
+                   style={{ '--color': theme.primaryColor } as React.CSSProperties} placeholder="Your Name" />
                 </div>
                 <div className="space-y-2">
                   <label className="text-[10px] font-bold tracking-[0.2em] text-white/40 uppercase">Email</label>
-                  <input type="email" className="w-full bg-white/5 border-b border-white/20 py-3 px-4 focus:outline-none focus:border-[#00f2ff] transition-colors" placeholder="your@email.com" />
+                  <input type="email" className="w-full bg-white/5 border-b border-white/20 py-3 px-4 focus:outline-none focus:border-[var(--color)] transition-colors" 
+                  style={{ '--color': theme.primaryColor } as React.CSSProperties} placeholder="your@email.com" />
                 </div>
               </div>
               <div className="space-y-2">
                 <label className="text-[10px] font-bold tracking-[0.2em] text-white/40 uppercase">Subject</label>
-                <select className="w-full bg-white/5 border-b border-white/20 py-3 px-4 focus:outline-none focus:border-[#00f2ff] transition-colors appearance-none">
+                <select className="w-full bg-white/5 border-b border-white/20 py-3 px-4 focus:outline-none focus:border-[var(--color)] transition-colors appearance-none"
+                    style={{ '--color': theme.primaryColor } as React.CSSProperties}>
                   <option className="bg-black">Booking Inquiry</option>
                   <option className="bg-black">Press Request</option>
                   <option className="bg-black">Collaboration</option>
@@ -86,12 +117,14 @@ const Contact: React.FC = () => {
               </div>
               <div className="space-y-2">
                 <label className="text-[10px] font-bold tracking-[0.2em] text-white/40 uppercase">Message</label>
-                <textarea rows={4} className="w-full bg-white/5 border-b border-white/20 py-3 px-4 focus:outline-none focus:border-[#00f2ff] transition-colors resize-none" placeholder="Tell us about your project..." />
+                <textarea rows={4} className="w-full bg-white/5 border-b border-white/20 py-3 px-4 focus:outline-none focus:border-[var(--color)] transition-colors resize-none"
+                style={{ '--color': theme.primaryColor } as React.CSSProperties} placeholder="Tell us about your project..." />
               </div>
               <motion.button
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="w-full py-5 bg-[#00f2ff] text-black font-black tracking-[0.2em] text-xs flex items-center justify-center gap-3"
+                className="w-full py-5 text-black font-black tracking-[0.2em] text-xs flex items-center justify-center gap-3"
+                style={{ backgroundColor: theme.primaryColor }}
               >
                 SEND MESSAGE <Send size={16} />
               </motion.button>
