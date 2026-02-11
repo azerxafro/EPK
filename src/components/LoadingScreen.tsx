@@ -29,7 +29,7 @@ const LoadingScreen = ({ isLoading }: LoadingScreenProps) => {
               scale: [1, 1.5, 1],
               opacity: [0.1, 0.2, 0.1]
             }}
-            transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
+            transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
             className="absolute w-[600px] h-[600px] rounded-full blur-[150px]"
             style={{ background: `radial-gradient(circle, ${theme.primaryColor}40, transparent)` }}
           />
@@ -40,13 +40,13 @@ const LoadingScreen = ({ isLoading }: LoadingScreenProps) => {
             {/* Spinning Triangle with Eye */}
             <motion.div
               animate={{ rotate: 360 }}
-              transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
+              transition={{ duration: 8, repeat: Infinity, ease: 'linear' }}
               className="relative"
             >
               {/* Outer spinning ring */}
               <motion.div
                 animate={{ rotate: -360 }}
-                transition={{ duration: 15, repeat: Infinity, ease: 'linear' }}
+                transition={{ duration: 6, repeat: Infinity, ease: 'linear' }}
                 className="absolute inset-0 flex items-center justify-center"
               >
                 <svg width="200" height="200" viewBox="0 0 200 200" className="opacity-20">
@@ -87,7 +87,7 @@ const LoadingScreen = ({ isLoading }: LoadingScreenProps) => {
                   filter="url(#glow)"
                   initial={{ pathLength: 0, opacity: 0 }}
                   animate={{ pathLength: 1, opacity: 1 }}
-                  transition={{ duration: 2, ease: 'easeOut' }}
+                  transition={{ duration: 0.6, ease: 'easeOut' }}
                 />
 
                 {/* Inner triangle */}
@@ -112,7 +112,7 @@ const LoadingScreen = ({ isLoading }: LoadingScreenProps) => {
                     strokeWidth="1.5"
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
-                    transition={{ delay: 0.5, duration: 0.8, ease: 'backOut' }}
+                    transition={{ delay: 0.2, duration: 0.4, ease: 'backOut' }}
                   />
                   
                   {/* Iris */}
@@ -125,7 +125,7 @@ const LoadingScreen = ({ isLoading }: LoadingScreenProps) => {
                     strokeWidth="1"
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
-                    transition={{ delay: 0.7, duration: 0.6 }}
+                    transition={{ delay: 0.3, duration: 0.3 }}
                   />
                   
                   {/* Pupil - pulsing */}
@@ -139,7 +139,7 @@ const LoadingScreen = ({ isLoading }: LoadingScreenProps) => {
                       scale: [1, 1.3, 1],
                     }}
                     transition={{ 
-                      scale: { delay: 1, duration: 2, repeat: Infinity, ease: 'easeInOut' }
+                      scale: { delay: 0.4, duration: 1, repeat: Infinity, ease: 'easeInOut' }
                     }}
                   />
 
@@ -160,7 +160,7 @@ const LoadingScreen = ({ isLoading }: LoadingScreenProps) => {
                     opacity="0.2"
                     initial={{ pathLength: 0 }}
                     animate={{ pathLength: 1 }}
-                    transition={{ delay: 1 + i * 0.05, duration: 0.5 }}
+                    transition={{ delay: 0.4 + i * 0.02, duration: 0.2 }}
                   />
                 ))}
               </svg>
@@ -170,7 +170,7 @@ const LoadingScreen = ({ isLoading }: LoadingScreenProps) => {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.5, duration: 0.8 }}
+              transition={{ delay: 0.5, duration: 0.4 }}
               className="text-center"
             >
               <h1 
@@ -182,7 +182,7 @@ const LoadingScreen = ({ isLoading }: LoadingScreenProps) => {
               <motion.div
                 initial={{ width: 0 }}
                 animate={{ width: '100%' }}
-                transition={{ delay: 2, duration: 1.5, ease: 'easeOut' }}
+                transition={{ delay: 0.7, duration: 0.6, ease: 'easeOut' }}
                 className="h-[1px] mt-4 mx-auto"
                 style={{ background: `linear-gradient(90deg, transparent, ${theme.primaryColor}, transparent)` }}
               />
@@ -192,7 +192,7 @@ const LoadingScreen = ({ isLoading }: LoadingScreenProps) => {
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 2 }}
+              transition={{ delay: 0.8 }}
               className="flex gap-2"
             >
               {[0, 1, 2].map((i) => (
@@ -203,9 +203,9 @@ const LoadingScreen = ({ isLoading }: LoadingScreenProps) => {
                     scale: [0.8, 1, 0.8]
                   }}
                   transition={{ 
-                    duration: 1.5, 
+                    duration: 0.8, 
                     repeat: Infinity, 
-                    delay: i * 0.2,
+                    delay: i * 0.1,
                     ease: 'easeInOut'
                   }}
                   className="w-1.5 h-1.5 rounded-full"

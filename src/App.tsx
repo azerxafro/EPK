@@ -25,8 +25,8 @@ const MainContent: React.FC = () => {
   });
 
   useEffect(() => {
-    // Minimum loading time for splash effect + wait for fonts/images
-    const minLoadTime = 3000;
+    // Minimum loading time for splash effect
+    const minLoadTime = 1500;
     const startTime = Date.now();
 
     const handleLoad = () => {
