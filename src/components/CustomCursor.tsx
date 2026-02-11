@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, type Variants } from 'framer-motion';
+
+const cursorTransition = { type: 'spring' as const, damping: 20, stiffness: 250, mass: 0.5 };
 
 const CustomCursor: React.FC = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -33,11 +35,11 @@ const CustomCursor: React.FC = () => {
     };
   }, []);
 
-  const variants = {
+  const variants: Variants = {
     default: {
       x: mousePosition.x - 16,
       y: mousePosition.y - 16,
-      transition: { type: 'spring', damping: 20, stiffness: 250, mass: 0.5 }
+      transition: cursorTransition
     },
     hover: {
       x: mousePosition.x - 40,
@@ -45,8 +47,8 @@ const CustomCursor: React.FC = () => {
       height: 80,
       width: 80,
       backgroundColor: '#00f2ff',
-      mixBlendMode: 'difference' as any,
-      transition: { type: 'spring', damping: 20, stiffness: 250, mass: 0.5 }
+      mixBlendMode: 'difference',
+      transition: cursorTransition
     }
   };
 

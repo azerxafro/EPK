@@ -1,6 +1,11 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
+const reveal = {
+  initial: { opacity: 0, y: 24 },
+  whileInView: { opacity: 1, y: 0 },
+};
+
 const Bio: React.FC = () => {
   return (
     <section id="story" className="py-32 px-6 max-w-7xl mx-auto">
@@ -8,8 +13,9 @@ const Bio: React.FC = () => {
 
         <div className="lg:col-span-12 mb-12">
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
+            initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
             viewport={{ once: true }}
             className="flex items-baseline gap-4 border-b border-white/10 pb-4"
           >
@@ -20,9 +26,9 @@ const Bio: React.FC = () => {
 
         <div className="lg:col-span-7 space-y-12">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            {...reveal}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.8 }}
             className="space-y-6"
           >
             <h3 className="text-[#00f2ff] font-bold tracking-[0.3em] text-xs uppercase">The Erasure (Winter 2024)</h3>
@@ -35,10 +41,9 @@ const Bio: React.FC = () => {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
+            {...reveal}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ delay: 0.1, duration: 0.8 }}
             className="columns-1 md:columns-2 gap-8 text-white/40 leading-relaxed text-base space-y-6 border-t border-white/5 pt-8"
           >
             <p>
@@ -56,9 +61,9 @@ const Bio: React.FC = () => {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            {...reveal}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.8 }}
             className="space-y-6 pt-8"
           >
             <h3 className="text-[#00f2ff] font-bold tracking-[0.3em] text-xs uppercase">The Rebirth: Lucid ASH</h3>
@@ -73,9 +78,10 @@ const Bio: React.FC = () => {
 
         <div className="lg:col-span-5 space-y-12">
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
+            initial={{ opacity: 0, scale: 0.94, y: 20 }}
+            whileInView={{ opacity: 1, scale: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.25 }}
+            transition={{ duration: 0.7 }}
             className="bg-white/5 p-8 border-l-4 border-[#00f2ff] relative overflow-hidden"
           >
             <div className="absolute top-0 right-0 p-2 text-[8px] font-bold text-white/10 tracking-widest">RECOVERED DATA: 30%</div>

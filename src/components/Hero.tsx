@@ -12,12 +12,12 @@ const Hero: React.FC = () => {
     setMousePos({ x: moveX, y: moveY });
   };
 
-  const springX = useSpring(mousePos.x, { stiffness: 50, damping: 20 });
-  const springY = useSpring(mousePos.y, { stiffness: 50, damping: 20 });
+  const springX = useSpring(mousePos.x, { stiffness: 45, damping: 20, mass: 0.8 });
+  const springY = useSpring(mousePos.y, { stiffness: 45, damping: 20, mass: 0.8 });
 
-  const y1 = useTransform(scrollY, [0, 500], [0, 200]);
-  const y2 = useTransform(scrollY, [0, 500], [0, -150]);
-  const opacity = useTransform(scrollY, [0, 300], [1, 0]);
+  const y1 = useTransform(scrollY, [0, 500], [0, 180]);
+  const y2 = useTransform(scrollY, [0, 500], [0, -120]);
+  const opacity = useTransform(scrollY, [0, 320], [1, 0]);
 
   return (
     <section
@@ -25,12 +25,15 @@ const Hero: React.FC = () => {
       className="relative h-screen flex items-center justify-center overflow-hidden px-6"
     >
       <motion.div
-        style={{ y: y2, opacity: useTransform(scrollY, [0, 500], [0.4, 0]) }}
+        style={{ y: y2, opacity: useTransform(scrollY, [0, 500], [0.45, 0]) }}
         className="absolute inset-0 z-0"
       >
         <img
           src="/images/hero-bg.webp"
           alt="Lucid ASH"
+          loading="eager"
+          fetchPriority="high"
+          decoding="async"
           className="w-full h-full object-cover grayscale opacity-30"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#050505]/50 to-[#050505]" />
@@ -45,31 +48,37 @@ const Hero: React.FC = () => {
         </h2>
       </motion.div>
 
-      <div className="relative z-10 text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          style={{ x: useTransform(springX, (v) => v * -0.5), y: useTransform(springY, (v) => v * -0.5) }}
-          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-        >
-          <span className="text-[#00f2ff] font-bold tracking-[0.5em] text-xs mb-4 block">
-            ARTIST & PRODUCER
-          </span>
-          <h1 className="text-7xl md:text-9xl font-black font-syne tracking-tighter leading-[0.8] mb-8">
-            ASHWIN <br />
-            <span className="text-outline text-transparent" style={{ WebkitTextStroke: '1px white' }}>AZER</span>
-          </h1>
-          <p className="text-xl md:text-2xl font-light tracking-tight max-w-2xl mx-auto text-white/60">
-            Crafting sonic landscapes where reality meets the <span className="text-white italic">lucid dream</span>.
-          </p>
-        </motion.div>
-      </div>
+      <motion.div
+        initial={{ opacity: 0, y: 56, filter: 'blur(10px)' }}
+        animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+        transition={{ duration: 1.1 }}
+        style={{ x: useTransform(springX, (v) => v * -0.5), y: useTransform(springY, (v) => v * -0.5) }}
+        className="relative z-10 text-center"
+      >
+        <span className="text-[#00f2ff] font-bold tracking-[0.5em] text-xs mb-4 block">
+          ARTIST & PRODUCER
+        </span>
+        <h1 className="text-7xl md:text-9xl font-black font-syne tracking-tighter leading-[0.8] mb-8">
+          ASHWIN <br />
+          <span className="text-outline text-transparent" style={{ WebkitTextStroke: '1px white' }}>AZER</span>
+        </h1>
+        <p className="text-xl md:text-2xl font-light tracking-tight max-w-2xl mx-auto text-white/60">
+          Crafting sonic landscapes where reality meets the <span className="text-white italic">lucid dream</span>.
+        </p>
+      </motion.div>
 
       <motion.div
         style={{ y: y2 }}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.3 }}
         className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4"
       >
-        <div className="w-[1px] h-24 bg-gradient-to-b from-[#00f2ff] to-transparent" />
+        <motion.div
+          className="w-[1px] h-24 bg-gradient-to-b from-[#00f2ff] to-transparent"
+          animate={{ opacity: [0.4, 1, 0.4] }}
+          transition={{ repeat: Infinity, duration: 2.2 }}
+        />
         <span className="text-[10px] font-bold tracking-widest rotate-90 origin-left translate-x-1">SCROLL</span>
       </motion.div>
     </section>

@@ -4,24 +4,24 @@ import { motion } from 'framer-motion';
 const Gallery: React.FC = () => {
   const images = [
     {
-      url: "/images/hero-bg.webp",
-      span: "md:col-span-2 md:row-span-2",
-      title: "THE LOOK"
+      url: '/images/hero-bg.webp',
+      span: 'md:col-span-2 md:row-span-2',
+      title: 'THE LOOK'
     },
     {
-      url: "/images/sonic-frequencies.webp",
-      span: "md:col-span-1 md:row-span-1",
-      title: "SONIC FREQUENCIES"
+      url: '/images/sonic-frequencies.webp',
+      span: 'md:col-span-1 md:row-span-1',
+      title: 'SONIC FREQUENCIES'
     },
     {
-      url: "/images/visual-narrative.webp",
-      span: "md:col-span-1 md:row-span-1",
-      title: "VISUAL NARRATIVE"
+      url: '/images/visual-narrative.webp',
+      span: 'md:col-span-1 md:row-span-1',
+      title: 'VISUAL NARRATIVE'
     },
     {
-      url: "/images/lucid-moments.webp",
-      span: "md:col-span-2 md:row-span-1",
-      title: "LUCID MOMENTS"
+      url: '/images/lucid-moments.webp',
+      span: 'md:col-span-2 md:row-span-1',
+      title: 'LUCID MOMENTS'
     }
   ];
 
@@ -29,8 +29,9 @@ const Gallery: React.FC = () => {
     <section id="look" className="py-32 px-6">
       <div className="max-w-7xl mx-auto">
         <motion.div
-          initial={{ opacity: 0, x: -50 }}
+          initial={{ opacity: 0, x: -40 }}
           whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8 }}
           viewport={{ once: true }}
           className="flex items-baseline gap-4 mb-16"
         >
@@ -41,11 +42,12 @@ const Gallery: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 auto-rows-[300px]">
           {images.map((img, i) => (
             <motion.div
-              key={i}
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
+              key={img.title}
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              whileInView={{ opacity: 1, scale: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ delay: i * 0.08 }}
+              whileHover={{ y: -6 }}
               className={`relative group overflow-hidden bg-white/5 ${img.span}`}
             >
               <img

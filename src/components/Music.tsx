@@ -1,6 +1,44 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Play, ExternalLink, Youtube, Disc } from 'lucide-react';
+import { ExternalLink, Youtube, Disc, Play } from 'lucide-react';
+
+type DeferredEmbedProps = {
+  title: string;
+  src: string;
+  className?: string;
+  frameClassName?: string;
+  buttonLabel: string;
+};
+
+const DeferredEmbed: React.FC<DeferredEmbedProps> = ({ title, src, className, frameClassName, buttonLabel }) => {
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  return (
+    <div className={className}>
+      {isLoaded ? (
+        <iframe
+          src={src}
+          title={title}
+          loading="lazy"
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture; accelerometer; gyroscope"
+          allowFullScreen
+          className={frameClassName}
+          style={{ border: '0' }}
+        />
+      ) : (
+        <button
+          type="button"
+          onClick={() => setIsLoaded(true)}
+          className="w-full h-full bg-white/5 border border-white/10 hover:border-[#00f2ff] transition-colors flex flex-col items-center justify-center gap-3"
+          aria-label={buttonLabel}
+        >
+          <Play size={28} className="text-[#00f2ff]" />
+          <span className="text-[10px] font-bold tracking-[0.3em] text-white/70">LOAD EMBED</span>
+        </button>
+      )}
+    </div>
+  );
+};
 
 const Music: React.FC = () => {
   const platforms = [
@@ -15,26 +53,37 @@ const Music: React.FC = () => {
         <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
           <div>
             <motion.div
-              initial={{ opacity: 0, x: -50 }}
+              initial={{ opacity: 0, x: -40 }}
               whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
               viewport={{ once: true }}
               className="flex items-baseline gap-4 mb-4"
             >
               <span className="text-5xl font-black font-syne text-[#00f2ff]">02</span>
               <h2 className="text-6xl md:text-8xl font-black font-syne tracking-tighter">THE SOUND.</h2>
             </motion.div>
-            <p className="text-white/40 max-w-md">
+            <motion.p
+              initial={{ opacity: 0, y: 14 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="text-white/40 max-w-md"
+            >
               Duality in sound: The raw, explicit Hip-Hop of <span className="text-white">Ashwin Azer</span> meets the emotive, melodic soundscapes of <span className="text-[#00f2ff]">Lucid ASH</span>.
-            </p>
+            </motion.p>
           </div>
 
           <div className="flex flex-wrap gap-4">
-            {platforms.map((p) => (
+            {platforms.map((p, i) => (
               <motion.a
                 key={p.name}
                 href={p.href}
                 target="_blank"
                 rel="noopener noreferrer"
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.08 }}
                 whileHover={{ scale: 1.05, backgroundColor: p.color, color: '#000' }}
                 whileTap={{ scale: 0.95 }}
                 className="px-6 py-3 border border-white/10 font-bold tracking-widest text-[10px] flex items-center gap-2 transition-colors"
@@ -51,63 +100,65 @@ const Music: React.FC = () => {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
               className="sticky top-32"
             >
               <span className="text-[#00f2ff] text-[10px] font-bold tracking-[0.3em] mb-4 block">LATEST ALBUM</span>
-              <iframe
-                style={{ borderRadius: '12px' }}
+              <DeferredEmbed
+                title="Latest album on Spotify"
                 src="https://open.spotify.com/embed/album/4eipwaoJfbKEuwdZdaORQT?utm_source=generator&theme=0"
-                width="100%"
-                height="500"
-                frameBorder="0"
-                allowFullScreen
-                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                loading="lazy"
-              ></iframe>
+                className="h-[500px]"
+                frameClassName="w-full h-full rounded-xl"
+                buttonLabel="Load Spotify embed"
+              />
             </motion.div>
           </div>
 
           <div className="lg:col-span-7 space-y-12">
-            <div className="space-y-6">
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              className="space-y-6"
+            >
               <h3 className="text-2xl font-black font-syne flex items-center gap-3">
                 <Youtube className="text-[#00f2ff]" /> VISUALS
               </h3>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-3">
-                  <div className="aspect-video bg-white/5 relative group overflow-hidden">
-                    <iframe
-                      src="https://www.youtube.com/embed/ZWvMZM5A18o"
+                  <motion.div whileHover={{ y: -4 }} className="aspect-video bg-white/5 relative group overflow-hidden">
+                    <DeferredEmbed
                       title="LOW LOVE (OFFICIAL VIDEO)"
-                      loading="lazy"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowFullScreen
-                      className="w-full h-full border-0"
+                      src="https://www.youtube.com/embed/ZWvMZM5A18o"
+                      className="w-full h-full"
+                      frameClassName="w-full h-full"
+                      buttonLabel="Load LOW LOVE video"
                     />
-                  </div>
+                  </motion.div>
                   <p className="text-xs font-bold tracking-widest">LOW LOVE (OFFICIAL VIDEO)</p>
                 </div>
 
                 <div className="space-y-3">
-                  <div className="aspect-video bg-white/5 relative group overflow-hidden">
-                    <iframe
-                      src="https://www.youtube.com/embed/-TCS0ohFOzc"
+                  <motion.div whileHover={{ y: -4 }} className="aspect-video bg-white/5 relative group overflow-hidden">
+                    <DeferredEmbed
                       title="UYIRE ENNAI VITTU SENDRAYE"
-                      loading="lazy"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowFullScreen
-                      className="w-full h-full border-0"
+                      src="https://www.youtube.com/embed/-TCS0ohFOzc"
+                      className="w-full h-full"
+                      frameClassName="w-full h-full"
+                      buttonLabel="Load UYIRE ENNAI VITTU SENDRAYE video"
                     />
-                  </div>
+                  </motion.div>
                   <p className="text-xs font-bold tracking-widest">UYIRE ENNAI VITTU SENDRAYE</p>
                 </div>
               </div>
-            </div>
+            </motion.div>
 
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
+              transition={{ duration: 0.7 }}
               className="p-8 border border-red-500/20 bg-red-500/5 relative overflow-hidden"
             >
               <div className="absolute top-0 right-0 bg-red-500 text-black text-[8px] font-black px-3 py-1 tracking-widest">UNRESOLVED CASE</div>

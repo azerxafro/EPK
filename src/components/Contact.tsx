@@ -5,15 +5,20 @@ import { Mail, Instagram, Twitter, Youtube, Send } from 'lucide-react';
 const Contact: React.FC = () => {
   return (
     <section id="book" className="py-32 px-6 bg-black relative overflow-hidden">
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#00f2ff]/5 rounded-full blur-[120px] pointer-events-none" />
+      <motion.div
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#00f2ff]/5 rounded-full blur-[120px] pointer-events-none"
+        animate={{ scale: [1, 1.08, 1], opacity: [0.3, 0.5, 0.3] }}
+        transition={{ repeat: Infinity, duration: 8, ease: 'easeInOut' }}
+      />
 
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
 
           <div>
             <motion.div
-              initial={{ opacity: 0, x: -50 }}
+              initial={{ opacity: 0, x: -40 }}
               whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
               viewport={{ once: true }}
               className="flex items-baseline gap-4 mb-8"
             >
@@ -21,19 +26,34 @@ const Contact: React.FC = () => {
               <h2 className="text-6xl md:text-8xl font-black font-syne tracking-tighter">THE BOOK.</h2>
             </motion.div>
 
-            <p className="text-2xl text-white/60 mb-12 leading-relaxed">
+            <motion.p
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-2xl text-white/60 mb-12 leading-relaxed"
+            >
               For bookings, press inquiries, or collaborations, please reach out via the form or direct email.
-            </p>
+            </motion.p>
 
             <div className="space-y-6">
-              <a href="mailto:ashwinazer@monadelta.com" className="flex items-center gap-4 group">
+              <motion.a
+                href="mailto:ashwinazer@monadelta.com"
+                whileHover={{ x: 4 }}
+                className="flex items-center gap-4 group"
+              >
                 <div className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center group-hover:border-[#00f2ff] group-hover:text-[#00f2ff] transition-all">
                   <Mail size={20} />
                 </div>
                 <span className="text-xl font-bold tracking-tight">ashwinazer@monadelta.com</span>
-              </a>
+              </motion.a>
 
-              <a href="https://monadelta.me" target="_blank" className="flex items-center gap-4 group">
+              <motion.a
+                href="https://monadelta.me"
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ x: 4 }}
+                className="flex items-center gap-4 group"
+              >
                 <div className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center group-hover:border-[#00f2ff] group-hover:text-[#00f2ff] transition-all">
                   <Send size={20} />
                 </div>
@@ -41,7 +61,7 @@ const Contact: React.FC = () => {
                   <span className="text-xl font-bold tracking-tight">MONADELTA PRODUCTIONS</span>
                   <span className="text-[10px] text-white/40 tracking-widest">PORTAL IN DEVELOPMENT</span>
                 </div>
-              </a>
+              </motion.a>
 
               <div className="flex gap-4 pt-8">
                 {[Instagram, Twitter, Youtube].map((Icon, i) => (
@@ -49,6 +69,7 @@ const Contact: React.FC = () => {
                     key={i}
                     href="#"
                     whileHover={{ y: -5, color: '#00f2ff' }}
+                    whileTap={{ scale: 0.95 }}
                     className="w-14 h-14 rounded-full border border-white/10 flex items-center justify-center transition-colors"
                   >
                     <Icon size={24} />
@@ -62,6 +83,7 @@ const Contact: React.FC = () => {
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
             className="bg-white/5 p-10 backdrop-blur-sm border border-white/10"
           >
             <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
