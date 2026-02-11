@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Play, ExternalLink, Youtube, Disc } from 'lucide-react';
+import { ExternalLink, Youtube, Disc } from 'lucide-react';
 
 const Music: React.FC = () => {
   const platforms = [
@@ -55,7 +55,7 @@ const Music: React.FC = () => {
             >
               <span className="text-[#00f2ff] text-[10px] font-bold tracking-[0.3em] mb-4 block">LATEST ALBUM</span>
               <iframe
-                style={{ borderRadius: '12px' }}
+                className="rounded-xl"
                 src="https://open.spotify.com/embed/album/4eipwaoJfbKEuwdZdaORQT?utm_source=generator&theme=0"
                 width="100%"
                 height="500"
@@ -63,6 +63,7 @@ const Music: React.FC = () => {
                 allowFullScreen
                 allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
                 loading="lazy"
+                title="Spotify Album Player - Latest Album"
               ></iframe>
             </motion.div>
           </div>
