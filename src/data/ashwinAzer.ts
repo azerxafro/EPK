@@ -16,8 +16,12 @@ export const ashwinAzerData: ArtistData = {
   seo: {
     title: 'Ashwin Azer | The Architect & Producer',
     description: 'The central creative force and founder of Monadelta. Ashwin Azer is the architect behind the sound—producer, visionary, and the mind controlling the chaos.',
-    keywords: ['Ashwin Azer', 'Music Producer', 'Monadelta Founder', 'Hip-Hop Producer', 'Artist', 'The Architect'],
-    ogImage: '/images/og-image.jpg'
+    keywords: ['Ashwin Azer', 'Music Producer', 'Monadelta Founder', 'Hip-Hop Producer', 'Artist', 'The Architect', 'Indian Hip Hop', 'Trap Music Producer'],
+    ogImage: '/images/og-image.jpg',
+    canonicalUrl: 'https://ashwinazer.rocks',
+    spotifyArtistId: '6M1VSmwtcuwS1DnvXTGk7P',
+    appleMusicId: '1497428225',
+    musicBrainzId: 'b43aaeda-d79e-4711-b242-feebf44c76fb'
   },
   content: {
     hero: {

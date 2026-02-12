@@ -4,13 +4,22 @@ import { useArtist } from '../context/ArtistContext';
 
 const SEO: React.FC = () => {
     const { artist } = useArtist();
-    const { seo, theme } = artist;
+    const { seo, theme, content } = artist;
     
-    // Fallback if SEO object is missing (though it shouldn't be now)
     const title = seo.title || `${artist.name} | Official Website`;
-    const description = seo.description || artist.content.hero.description.replace(/<[^>]*>?/gm, '');
-    const url = `https://${artist.domain}`;
-    const image = `${url}${seo.ogImage || artist.content.hero.bgImage}`;
+    const description = seo.description || content.hero.description.replace(/<[^>]*>?/gm, '');
+    const url = seo.canonicalUrl || `https://${artist.domain}`;
+    const image = seo.ogImage.startsWith('http') ? seo.ogImage : `https://${artist.domain}${seo.ogImage}`;
+
+    // Collect all social and platform links for sameAs
+    const sameAsLinks = [
+        ...content.contact.socials.map(s => s.href),
+        ...content.music.platforms.map(p => p.href),
+        "https://monadelta.me" // Parent organization
+    ];
+
+    // Remove duplicates
+    const uniqueSameAs = [...new Set(sameAsLinks)];
 
     // Dynamic JSON-LD structured data
     const jsonLd = {
@@ -20,13 +29,17 @@ const SEO: React.FC = () => {
                 "@type": "MusicGroup",
                 "@id": `${url}/#artist`,
                 "name": artist.name,
+                "alternateName": artist.id === 'lucid-ash' ? 'Lucid ASH' : 'Ashwin Azer',
                 "description": description,
                 "url": url,
                 "image": image,
-                "sameAs": [
-                    "https://instagram.com/theashwinazer",
-                    "https://youtube.com/@ashwinazer",
-                    "https://monadelta.me"
+                "sameAs": uniqueSameAs,
+                "genre": artist.id === 'lucid-ash' ? ['Alternative R&B', 'Dark Pop'] : ['Hip Hop', 'Rap', 'Trap'],
+                "member": [
+                    {
+                        "@type": "Person",
+                        "name": artist.legalName || "Ashwin Ramesh"
+                    }
                 ]
             },
             {
@@ -55,8 +68,9 @@ const SEO: React.FC = () => {
             <meta property="og:title" content={title} />
             <meta property="og:description" content={description} />
             <meta property="og:image" content={image} />
+            <meta property="og:site_name" content={artist.name} />
             
-            {/* Twitter Card - No specific handle attribution as requested, just summary */}
+            {/* Twitter Card */}
             <meta name="twitter:card" content="summary_large_image" />
             <meta name="twitter:url" content={url} />
             <meta name="twitter:title" content={title} />

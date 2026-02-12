@@ -16,9 +16,13 @@ export const lucidAshData: ArtistData = {
   },
   seo: {
     title: 'Lucid ASH | The Dark Alter-Ego',
-    description: 'The shadow self. Lucid ASH is the raw, supernatural alter-ego of Ashwin Azer. Dark, unfiltered, and untamed—the Slim Shady to the creator\'s Marshall.',
-    keywords: ['Lucid ASH', 'Alter Ego', 'Dark R&B', 'Horrorcore', 'Supernatural', 'Shadow Self'],
-    ogImage: '/images/lucid-moments.webp' 
+    description: 'The shadow self. Lucid ASH is the raw, supernatural alter-ego of Ashwin Azer. Dark, unfiltered, and untamed—the Slim Shady to the creator\'s Marshall. Exploring the depths of horrorcore and dark R&B.',
+    keywords: ['Lucid ASH', 'Alter Ego', 'Dark R&B', 'Horrorcore', 'Supernatural', 'Shadow Self', 'Ashwin Azer', 'Experimental Hip Hop'],
+    ogImage: '/images/lucid-moments.webp',
+    canonicalUrl: 'https://ashwinazer.rocks', // Main domain serves as canonical for now
+    spotifyArtistId: '5aHEYAeQkjg7DT1CiH6l3t',
+    appleMusicId: '1497428225', // Shared Apple Music ID for now if not separate
+    musicBrainzId: 'b43aaeda-d79e-4711-b242-feebf44c76fb'
   },
   content: {
     hero: {
