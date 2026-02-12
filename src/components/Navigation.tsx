@@ -36,14 +36,15 @@ const Navigation = () => {
       {/* Desktop Navigation */}
       <nav 
         className={`fixed top-0 left-0 w-full z-40 transition-all duration-300 animate-[fadeSlideUp_0.5s_ease-out_both] ${
-          scrolled ? 'py-4 bg-black/80 backdrop-blur-lg border-b border-white/5' : 'py-6'
+          scrolled ? 'py-3 md:py-4 bg-black/80 backdrop-blur-lg border-b border-white/5' : 'py-4 md:py-6'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
+        <div className="max-w-7xl mx-auto px-4 md:px-6 flex justify-between items-center">
           {/* Logo */}
           <a 
             href="#home"
-            className="text-xl font-black tracking-tighter font-syne hover:opacity-80 transition-opacity"
+            className="text-lg md:text-xl font-black tracking-tighter font-syne hover:opacity-80 transition-opacity z-50 relative"
+            onClick={() => setIsOpen(false)}
           >
             {artist.content.hero.artistName.split(' ')[0]}
             <span 
@@ -58,11 +59,11 @@ const Navigation = () => {
               <a
                 key={item.name}
                 href={item.href}
-                className="text-xs font-bold tracking-widest text-white/60 hover:text-white transition-colors relative group"
+                className="text-xs font-bold tracking-widest text-white/60 hover:text-white transition-colors relative group py-2"
               >
                 {item.name}
                 <span 
-                  className="absolute -bottom-1 left-0 w-0 h-[1px] group-hover:w-full transition-all duration-300"
+                  className="absolute bottom-1 left-0 w-0 h-[1px] group-hover:w-full transition-all duration-300"
                   style={{ backgroundColor: theme.primaryColor }}
                 />
               </a>
@@ -85,7 +86,7 @@ const Navigation = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-2 -mr-2"
+            className="md:hidden p-2 -mr-2 z-50 relative text-white"
             aria-label="Toggle menu"
             aria-expanded={isOpen}
           >
@@ -96,17 +97,17 @@ const Navigation = () => {
 
       {/* Mobile Menu Overlay - CSS transitions */}
       <div
-        className={`fixed inset-0 z-30 md:hidden bg-black transition-all duration-300 ${
+        className={`fixed inset-0 z-40 md:hidden bg-black transition-all duration-300 ${
           isOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
         }`}
       >
-        <div className="flex flex-col items-center justify-center h-full gap-8 px-6">
+        <div className="flex flex-col items-center justify-center h-full gap-6 px-6">
           {navItems.map((item, i) => (
             <a
               key={item.name}
               href={item.href}
               onClick={handleNavClick}
-              className="text-4xl font-black font-syne tracking-tight transition-all duration-300"
+              className="text-3xl font-black font-syne tracking-tight transition-all duration-300 py-2"
               style={{ 
                 transitionDelay: isOpen ? `${i * 50}ms` : '0ms',
                 transform: isOpen ? 'translateY(0)' : 'translateY(20px)',
@@ -122,7 +123,8 @@ const Navigation = () => {
             href={artist.content.hero.ctaLink || '#music'}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-8 px-8 py-4 rounded-full text-sm font-bold tracking-widest text-black transition-all duration-300"
+            onClick={handleNavClick}
+            className="mt-6 px-8 py-4 rounded-full text-sm font-bold tracking-widest text-black transition-all duration-300 w-full max-w-xs text-center"
             style={{ 
               background: `linear-gradient(135deg, ${theme.primaryColor}, ${theme.gradientTo || theme.primaryColor})`,
               transitionDelay: isOpen ? '200ms' : '0ms',
@@ -148,7 +150,7 @@ const Navigation = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={`Follow on ${social.name}`}
-                className="text-xs font-bold tracking-widest text-white/60 hover:text-white transition-colors"
+                className="text-xs font-bold tracking-widest text-white/60 hover:text-white transition-colors p-2"
               >
                 {social.name.toUpperCase()}
               </a>

@@ -7,6 +7,7 @@ import LoadingScreen from './components/LoadingScreen';
 import CustomCursor from './components/CustomCursor';
 import Hero from './components/Hero';
 import Music from './components/Music';
+import AlbumPromo from './components/AlbumPromo';
 import VideoSection from './components/VideoSection';
 import Bio from './components/Bio';
 import Gallery from './components/Gallery';
@@ -25,8 +26,8 @@ const MainContent: React.FC = () => {
   });
 
   useEffect(() => {
-    // Minimum loading time for splash effect
-    const minLoadTime = 1500;
+    // Minimum loading time for splash effect + wait for fonts/images
+    const minLoadTime = 500;
     const startTime = Date.now();
 
     const handleLoad = () => {
@@ -52,8 +53,6 @@ const MainContent: React.FC = () => {
       <SEO />
       <CustomCursor />
 
-      <CustomCursor />
-      
       <motion.div
         className="fixed top-0 left-0 right-0 h-1 origin-left z-50"
         style={{ scaleX, backgroundColor: artist.theme.primaryColor }}
@@ -64,6 +63,7 @@ const MainContent: React.FC = () => {
       <main>
         <Hero />
         <Music />
+        <AlbumPromo />
         <VideoSection />
         <Bio />
         <Gallery />

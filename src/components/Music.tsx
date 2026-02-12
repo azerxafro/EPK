@@ -12,26 +12,26 @@ const Music = () => {
   const { theme } = artist;
 
   return (
-    <section id="music" className="py-20 md:py-32 relative overflow-hidden">
+    <section id="music" className="py-16 md:py-32 relative overflow-hidden">
       {/* Background gradient glow */}
       <div 
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full blur-[200px] opacity-20 pointer-events-none"
         style={{ background: `linear-gradient(135deg, ${theme.primaryColor}, ${theme.gradientTo || theme.primaryColor})` }}
       />
       
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 md:px-6 relative z-10">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-6"
+          className="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 md:mb-12 gap-6"
         >
           <div>
-            <h2 className="text-4xl md:text-6xl font-black font-syne tracking-tight mb-4">
+            <h2 className="text-3xl md:text-6xl font-black font-syne tracking-tight mb-2 md:mb-4">
               {music.title}
             </h2>
-            <p className="text-white/50 max-w-lg">
+            <p className="text-white/50 max-w-lg text-sm md:text-base">
               {music.description}
             </p>
           </div>
@@ -59,18 +59,18 @@ const Music = () => {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-16"
+          className="mb-12 md:mb-16"
         >
           <div className="relative p-1 rounded-2xl overflow-hidden" style={{ background: `linear-gradient(135deg, ${theme.primaryColor}40, ${theme.gradientTo || theme.primaryColor}40)` }}>
-            <div className="bg-black/90 rounded-xl p-6 md:p-8">
+            <div className="bg-black/90 rounded-xl p-4 md:p-8">
               <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 mb-6">
                 <div>
                   <span 
                     className="text-[10px] font-bold tracking-[0.3em] mb-2 block"
                     style={{ color: theme.primaryColor }}
                   >LATEST ALBUM</span>
-                  <h3 className="text-3xl md:text-4xl font-black font-syne tracking-tight">{music.featuredAlbum.title}</h3>
-                  <p className="text-white/60 text-sm mt-1">{music.featuredAlbum.subtitle}</p>
+                  <h3 className="text-2xl md:text-4xl font-black font-syne tracking-tight">{music.featuredAlbum.title}</h3>
+                  <p className="text-white/60 text-xs md:text-sm mt-1">{music.featuredAlbum.subtitle}</p>
                 </div>
                 {music.upcomingRelease && (
                   <motion.div
@@ -89,7 +89,8 @@ const Music = () => {
               <iframe
                 className="rounded-xl w-full"
                 src={music.featuredAlbum.url}
-                height="380"
+                height="380" // Fixed height for iframe looks better than responsive height usually, or use aspect-ratio wrapper
+                style={{ height: '380px' }}
                 frameBorder="0"
                 allowFullScreen
                 allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
@@ -101,7 +102,7 @@ const Music = () => {
         </motion.div>
 
         {/* Dual Discography */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12 md:mb-16">
           {/* Primary Artist */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
@@ -115,11 +116,11 @@ const Music = () => {
                 style={{ backgroundColor: theme.primaryColor }}
               />
               <div>
-                <h4 className="text-xl font-black font-syne">{music.discographyEmbed.title}</h4>
+                <h4 className="text-lg md:text-xl font-black font-syne">{music.discographyEmbed.title}</h4>
                 <p className="text-white/60 text-xs">{music.discographyEmbed.subtitle}</p>
               </div>
             </div>
-            <div className="bg-white/5 rounded-xl p-4 border border-white/5">
+            <div className="bg-white/5 rounded-xl p-3 md:p-4 border border-white/5">
               <iframe
                 className="rounded-lg w-full"
                 src={music.discographyEmbed.url}
@@ -148,11 +149,11 @@ const Music = () => {
                   style={{ backgroundColor: theme.gradientTo || theme.primaryColor }}
                 />
                 <div>
-                  <h4 className="text-xl font-black font-syne">{music.alternateEmbed.title}</h4>
+                  <h4 className="text-lg md:text-xl font-black font-syne">{music.alternateEmbed.title}</h4>
                   <p className="text-white/60 text-xs">{music.alternateEmbed.subtitle}</p>
                 </div>
               </div>
-              <div className="bg-white/5 rounded-xl p-4 border border-white/5">
+              <div className="bg-white/5 rounded-xl p-3 md:p-4 border border-white/5">
                 <iframe
                   className="rounded-lg w-full"
                   src={music.alternateEmbed.url}
@@ -191,7 +192,7 @@ const Music = () => {
               <h3 className="text-2xl md:text-3xl font-black font-syne mb-3">
                 {music.upcomingRelease.title}
               </h3>
-              <p className="text-white/50">
+              <p className="text-white/50 text-sm md:text-base">
                 {music.upcomingRelease.description}
               </p>
             </motion.div>
@@ -215,7 +216,7 @@ const Music = () => {
               <h3 className="text-2xl md:text-3xl font-black font-syne mb-3">
                 {music.featured.find(f => f.type === 'Label')?.title}
               </h3>
-              <p className="text-white/50 mb-4">
+              <p className="text-white/50 mb-4 text-sm md:text-base">
                 {music.featured.find(f => f.type === 'Label')?.content}
               </p>
               {music.featured.find(f => f.type === 'Label')?.link && (

@@ -15,10 +15,10 @@ export const lucidAshData: ArtistData = {
     gradientTo: '#C4A77D' // Sepia/tan
   },
   seo: {
-    title: 'Ashwin Azer | Official Website - Music, Videos & More',
-    description: 'Official website of Ashwin Azer (Lucid ASH). Contemporary R&B and melodic Hip-Hop artist. Stream DESTINY, watch music videos, and stay updated.',
-    keywords: ['Ashwin Azer', 'Lucid ASH', 'DESTINY', 'Monadelta', 'Contemporary R&B', 'Hip-Hop', 'Indian Artist', 'Music Producer'],
-    ogImage: '/images/og-image.jpg'
+    title: 'Lucid ASH | The Dark Alter-Ego',
+    description: 'The shadow self. Lucid ASH is the raw, supernatural alter-ego of Ashwin Azer. Dark, unfiltered, and untamed—the Slim Shady to the creator\'s Marshall.',
+    keywords: ['Lucid ASH', 'Alter Ego', 'Dark R&B', 'Horrorcore', 'Supernatural', 'Shadow Self'],
+    ogImage: '/images/lucid-moments.webp' 
   },
   content: {
     hero: {
@@ -42,34 +42,21 @@ export const lucidAshData: ArtistData = {
       monadeltaMention: 'Distributed by Monadelta Productions'
     },
     bio: {
-      title: 'THE STORY',
-      story: {
-        part1: {
-          title: 'The Erasure (Winter 2024)',
-          highlight: 'deleted',
-          content: 'In the winter of 2024, the digital ghost of Ashwin Azer was nearly deleted. A catastrophic failure at Unchained Music led to the systematic takedown of his entire discography. In a cruel twist of irony, AI algorithms misidentified his original, self-produced compositions as "AI-generated"—effectively locking him out of his own legacy. Only 30% of his life\'s work was recovered from the wreckage.'
-        },
-        part2: {
-          content: [
-            'The digital erasure was only the surface. Behind the screen, Azer faced a perfect storm of betrayal: former labels and trusted friends turned their backs, while a high-profile relationship shattered under the weight of the industry machine.',
-            'What followed was a descent into the darkest corners of the human experience—depression, anxiety, and a battle with substance abuse that eventually led to rehabilitation. The world saw silence; Ashwin saw the void.'
-          ]
-        },
-        part3: {
-          title: 'The Rebirth: MONADELTA',
-          content: 'From the ashes rose MONADELTA Productions—the artist-first collective he founded in 2024. With his debut album DESTINY (2025) featuring Wa\'Cali and Marabukavi, and the ambitious Legends & Lovers on the horizon for 2026, Ashwin Azer didn\'t just survive. He built an empire.'
-        }
-      },
-      quote: '"I picked up the mic, and the first note came out smooth and steady. The sound vibrated through the stage floor into my chest. I lowered my voice and I could hear people singing my own song back to me."',
-      quoteAttribution: '— ASHWIN AZER, Apple Music Interview',
-      multimediaHint: 'Before the frequencies, he was already cutting frames for the world—crafting visual narratives for clients across continents. But the sound called him back.',
-      sidebar: {
-        title: 'RECOVERED DATA: 30%',
-        content: '"A sonic resurrection. From DIY beats on Premiere Pro with a keypad phone as a microphone, to founding an entire movement. This is the rebuild."',
-        author: 'MONADELTA ARCHIVES',
-        image: '/images/lucid-moments.webp',
-        imageCaption: 'THE 2025 COMEBACK · DESTINY TOUR'
-      }
+      headline: 'THE STORY OF RESURRECTION.',
+      shortBio: 'In the winter of 2024, the digital ghost of Ashwin Azer was nearly deleted. Now, he stands rebuilt, stronger than ever.',
+      fullBio: `The digital erasure was only the surface. Behind the screen, Azer faced a perfect storm of betrayal: former labels and trusted friends turned their backs, while a high-profile relationship shattered under the weight of the industry machine.
+
+What followed was a descent into the darkest corners of the human experience—depression, anxiety, and a battle with substance abuse. The world saw silence; Ashwin saw the void.
+
+But from the ashes rose MONADELTA Productions—the artist-first collective he founded. With his debut album DESTINY (2025) featuring Wa'Cali and Marabukavi, and the ambitious Legends & Lovers on the horizon for 2026, Ashwin Azer didn't just survive. He built an empire.`,
+      images: ['/images/lucid-moments.webp', '/images/hero-bg.webp'],
+      pullQuote: 'I picked up the mic, and the first note came out smooth and steady. The sound vibrated through the stage floor into my chest.',
+      quoteAttribution: '— ASHWIN AZER',
+      stats: [
+        { value: '30%', label: 'DATA RECOVERED' },
+        { value: '11', label: 'NEW TRACKS' },
+        { value: '∞', label: 'LEGACY' }
+      ]
     },
     music: {
       title: 'MUSIC',
@@ -98,115 +85,128 @@ export const lucidAshData: ArtistData = {
         title: 'DESTINY',
         subtitle: '11 TRACKS · 22:16 · 2025'
       },
-      albums: [
-        {
-          id: 'destiny',
-          title: 'DESTINY',
-          year: 2025,
-          coverUrl: '/images/destiny-cover.webp',
-          spotifyUrl: 'https://open.spotify.com/album/4eipwaoJfbKEuwdZdaORQT',
-          appleMusicUrl: 'https://music.apple.com/album/destiny/1497428225',
-          type: 'album'
-        }
-      ],
-      youtubeChannel: 'https://www.youtube.com/@ashwinazer',
-      // All 14 YouTube videos categorized
-      youtubeVideos: [
-        // Music Videos (Featured)
-        { id: 'ZWvMZM5A18o', title: 'LOW LOVE', description: 'Official Music Video - DESTINY Era', category: 'music-video', year: 2025, featured: true },
-        { id: '-TCS0ohFOzc', title: 'UYIRE ENNAI VITTU SENDRAYE', description: 'The track that became a symbol of industry exploitation', category: 'music-video', featured: true },
-        { id: 'unB4PxJ23Zc', title: 'PIKACHU', description: 'First ever music video - Made in 11th Grade (16 years old)', category: 'music-video', year: 2019 },
-        { id: 'VxJTnOqPhMk', title: 'FANTASY', description: 'Taken down from streaming platforms due to label issues', category: 'music-video' },
-        { id: 'Kpexuug5UsM', title: 'Yendi Enna Vittu Pona', description: 'Official Music Video', category: 'music-video' },
-        // Lyric Videos
-        { id: '-i2pefklvk8', title: 'Pick n\' Sick', description: 'Lyric Video', category: 'lyric-video' },
-        { id: 'nsGTxswX308', title: 'HUDA HOLA', description: 'From DESTINY Album - Lyric Video', category: 'lyric-video', year: 2025 },
-        // Audio Tracks
-        { id: 'HPrbiq2CB7I', title: 'MOJITO', description: 'Audio', category: 'audio' },
-        { id: 'OpnhEfUlJZ0', title: 'SK FROM POCHINKI', description: 'Audio', category: 'audio' },
-        { id: 'MCPJmOn8fpA', title: 'Un Kadhal Parvai', description: 'Audio', category: 'audio' },
-        { id: 'wS-g9_H2QSA', title: 'Juno xx2', description: 'Audio', category: 'audio' },
-        { id: '61iURNsHg94', title: 'Blue Fuel', description: 'Audio', category: 'audio' },
-        { id: 'VnUSwY1_NiE', title: 'Vesham Kalayala', description: 'Audio Only', category: 'audio' },
-        { id: 'CMdZsNZ2UE8', title: 'How You Like That (Blackpink)', description: 'Official Instrumental', category: 'audio' }
-      ],
-      visuals: [
-        { title: 'LOW LOVE (OFFICIAL VIDEO)', videoUrl: 'https://www.youtube.com/embed/ZWvMZM5A18o', description: 'The visual statement of the DESTINY era' },
-        { title: 'UYIRE ENNAI VITTU SENDRAYE', videoUrl: 'https://www.youtube.com/embed/-TCS0ohFOzc', description: 'The track that became a symbol of industry exploitation' }
-      ],
       upcomingRelease: {
         title: 'LEGENDS & LOVERS',
         year: 2026,
         description: 'The most ambitious project yet.',
         type: 'album'
       },
-      featured: [
-        {
-          title: 'MONADELTA PRODUCTIONS',
-          content: 'The artist-first music collective. Home to Ashwin Azer, Lucid ASH, and Wa\'Cali.',
-          type: 'Label',
-          link: 'https://monadelta.me',
-          linkText: 'VISIT MONADELTA →'
-        }
-      ],
-      latestAlbumEmbed: 'https://open.spotify.com/embed/album/4eipwaoJfbKEuwdZdaORQT?utm_source=generator&theme=0'
-    },
-    gallery: {
-      title: 'THE LOOK.',
-      images: [
-        {
-          url: '/images/hero-bg.webp',
-          span: 'md:col-span-2 md:row-span-2',
-          title: 'DESTINY ERA',
-          subtitle: 'The 2025 comeback visual',
-          era: 'MONADELTA SESSIONS'
+      visuals: [],
+      youtubeChannel: 'https://www.youtube.com/@ashwinazer',
+      youtubeVideos: [
+        { 
+          id: 'ZWvMZM5A18o',
+          title: 'LOW LOVE (OFFICIAL VIDEO)', 
+          description: 'The visual statement of raw, unfiltered artistry',
+          category: 'music-video',
+          featured: true,
+          year: 2024
         },
-        {
-          url: '/images/sonic-frequencies.webp',
-          span: 'md:col-span-1 md:row-span-1',
-          title: 'SONIC FREQUENCIES',
-          subtitle: 'Studio sessions',
-          era: 'THE REBUILD'
+        { 
+          id: 'playlist-OLAK5uy_lbPL44OSx23zMb5Pg8J-qtZIVzEKpXXoM',
+          title: 'DESTINY (Full Album Playlist)',
+          description: 'The complete album experience. 11 tracks. 1 story.',
+          category: 'audio',
+          year: 2025,
+          isPlaylist: true,
+          thumbnailUrl: 'https://dn710400.ca.archive.org/0/items/mbid-3c969d0e-dc05-4446-8d15-f6a97b065e92/mbid-3c969d0e-dc05-4446-8d15-f6a97b065e92-44220678948.jpg'
         },
-        {
-          url: '/images/visual-narrative.webp',
-          span: 'md:col-span-1 md:row-span-1',
-          title: 'VISUAL NARRATIVE',
-          subtitle: 'Behind the lens',
-          era: 'THE ERASURE ERA'
+        { 
+          id: 'Kpexuug5UsM', 
+          title: 'YENDI ENNA VITTU PONA', 
+          description: 'Official Music Video',
+          category: 'music-video',
+          year: 2024,
+          thumbnailUrl: 'https://i.ytimg.com/vi_webp/Kpexuug5UsM/maxresdefault.webp'
         },
-        {
-          url: '/images/lucid-moments.webp',
-          span: 'md:col-span-2 md:row-span-1',
-          title: 'LUCID MOMENTS',
-          subtitle: 'Between dreams and reality',
-          era: 'LUCID FREQUENCIES'
+        { 
+          id: 'unB4PxJ23Zc',
+          title: 'PIKACHU (Official Music Video)', 
+          description: 'High energy visuals',
+          category: 'music-video',
+          year: 2024
+        },
+         { 
+          id: 'VxJTnOqPhMk', 
+          title: 'FANTASY ft. Alina Helen', 
+          description: 'Official Music Video',
+          category: 'music-video',
+          year: 2022
+        },
+        { 
+          id: '-i2pefklvk8', 
+          title: 'PICK N SICK (Official Lyric Video)', 
+          description: 'Lyric Video',
+          category: 'lyric-video',
+          year: 2023
+        },
+        { 
+          id: 'CMdZsNZ2UE8', 
+          title: 'HOW YOU LIKE THAT (Instrumental)', 
+          description: 'With BLACKPINK Composers',
+          category: 'behind-the-scenes',
+          year: 2021
+        },
+        { 
+          id: '-TCS0ohFOzc', 
+          title: 'UYIRE ENNAI VITTU SENDRAYE', 
+          description: 'Audio Only',
+          category: 'audio',
+          year: 2019
+        },
+        { 
+          id: '61iURNsHg94', 
+          title: 'BLUE FUEL', 
+          description: 'Audio Only',
+          category: 'audio',
+          year: 2022
+        },
+        { 
+          id: 'a_OlZ7zXQ9w', 
+          title: 'CASKET', 
+          description: 'Audio Only',
+          category: 'audio',
+          year: 2023
+        },
+        { 
+          id: 'OpnhEfUlJZ0', 
+          title: 'SK FROM POCHINKI', 
+          description: 'Audio Only',
+          category: 'audio',
+          year: 2020
+        },
+        { 
+          id: 'HPrbiq2CB7I', 
+          title: 'MOJITO', 
+          description: 'Audio Only',
+          category: 'audio',
+          year: 2024
         }
       ]
     },
+    gallery: {
+      title: 'VISUALS',
+      images: [
+        { url: '/images/hero-bg.webp', title: 'Destiny Era', caption: 'The main cover shoot', era: '2025' },
+        { url: '/images/sonic-frequencies.webp', title: 'Studio', caption: 'Creating the frequencies', era: '2024' },
+        { url: '/images/lucid-moments.webp', title: 'Live', caption: 'The first show back', era: '2025' },
+        { url: '/images/og-image.jpg', title: 'Press', caption: 'Official asset', era: '2025' }
+      ]
+    },
     contact: {
-      email: 'contact@ashwinazer.rocks',
-      socials: [
-        { name: 'Instagram', href: 'https://instagram.com/theashwinazer', color: '#E4405F' },
-        { name: 'YouTube', href: 'https://www.youtube.com/@ashwinazer', color: '#FF0000' },
-        { name: 'Spotify', href: 'https://open.spotify.com/artist/6M1VSmwtcuwS1DnvXTGk7P', color: '#1DB954' },
-        { name: 'Apple Music', href: 'https://music.apple.com/us/artist/ashwin-azer/1497428225', color: '#FA243C' }
-      ],
-      altProfiles: [
-        { name: 'Lucid ASH', handle: '@thelucidash', href: 'https://instagram.com/thelucidash', platform: 'Instagram' },
-        { name: 'Monadelta', handle: '@themonadelta', href: 'https://instagram.com/themonadelta', platform: 'Instagram' }
-      ],
-      label: {
-        name: 'MONADELTA PRODUCTIONS',
-        url: 'https://monadelta.me',
-        description: 'The artist-first music collective'
+      management: {
+        name: 'Monadelta Mgmt',
+        email: 'ashwinazer@monadelta.me',
+        phone: '+91 (0) 123 456 789'
       },
-      newsletter: {
-        headline: 'Stay Updated',
-        subheadline: 'New music, tour dates, and exclusive content',
-        placeholder: 'Enter your email',
-        buttonText: 'Subscribe'
-      }
+      press: {
+        name: 'Press Team',
+        email: 'support@monadelta.me'
+      },
+      socials: [
+        { name: 'Instagram', href: 'https://instagram.com/theashwinazer' },
+        { name: 'YouTube', href: 'https://youtube.com/@ashwinazer' }
+      ]
     }
   }
 };
