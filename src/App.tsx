@@ -7,7 +7,6 @@ import LoadingScreen from './components/LoadingScreen';
 import CustomCursor from './components/CustomCursor';
 import Hero from './components/Hero';
 import Music from './components/Music';
-import VideoSection from './components/VideoSection';
 import Bio from './components/Bio';
 import Gallery from './components/Gallery';
 import Contact from './components/Contact';
@@ -62,7 +61,6 @@ const MainContent: React.FC = () => {
       <main>
         <Hero />
         <Music />
-        <VideoSection />
         <Bio />
         <Gallery />
         <Contact />

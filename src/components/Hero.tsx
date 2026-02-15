@@ -68,12 +68,12 @@ const Hero: React.FC = () => {
           >
             {hero.subtitle}
           </span>
-          <h1 className="text-7xl md:text-9xl font-black font-syne tracking-tighter leading-[0.8] mb-8">
+          <h1 className="text-5xl sm:text-7xl md:text-9xl font-black font-syne tracking-tighter leading-[0.8] mb-8">
             {firstName} <br />
             <span className="text-outline text-transparent" style={{ WebkitTextStroke: '1px white' }}>{lastName}</span>
           </h1>
           <p 
-            className="text-xl md:text-2xl font-light tracking-tight max-w-2xl mx-auto text-white/60 mb-10"
+            className="text-base sm:text-xl md:text-2xl font-light tracking-tight max-w-2xl mx-auto text-white/60 mb-10"
             dangerouslySetInnerHTML={{ __html: hero.description }} 
           />
 
